@@ -105,4 +105,27 @@ public class TestAlmacenamiento {
         BaseDeDatos.BorrarTodo();
   
     }
+
+    @Test
+    public void testMultiplesTablas() {
+ 
+        // nos aseguramos de que la base de datos esté vacía
+        BaseDeDatos.BorrarTodo();
+
+        // almacenamos un registro con estructura Boolean, Integer y String
+        // se espera que el índice sea 001001
+        // lo que significa que es el primer registro de la primera tabla
+        assertEquals("001001", BaseDeDatos.AgregarRegistro(Boolean.valueOf(false), Integer.valueOf(0), "Hola "));      
+
+        assertEquals("002001", BaseDeDatos.AgregarRegistro("someValue", Integer.valueOf(0), "Hola "));     
+
+        assertEquals(2, BaseDeDatos.ObtenerNumeroTablas());
+
+        assertEquals(1, BaseDeDatos.ObtenerNumRegistrosEnTabla(1)); 
+
+        assertEquals(1, BaseDeDatos.ObtenerNumRegistrosEnTabla(2));
+
+        BaseDeDatos.BorrarTodo();
+  
+    }
 }
